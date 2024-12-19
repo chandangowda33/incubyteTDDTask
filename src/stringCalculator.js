@@ -22,9 +22,18 @@ function add(numberString) {
 
   //step4:Support different delimiters
   if (numberString.startsWith("//")) {
-    const parts = numberString.split("\n");
-    delimiter = new RegExp(parts[0][2]);
-    numberString = parts[1];
+    const delimiterMatch = numberString.match(/^\/\/\[(.+?)\]\n/);
+    if (delimiterMatch) {
+      const escapedDelimiter = delimiterMatch[1].replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&"
+      );
+      delimiter = new RegExp(escapedDelimiter);
+      numberString = numberString.slice(delimiterMatch[0].length);
+    } else {
+      delimiter = new RegExp(numberString[2]);
+      numberString = numberString.slice(4);
+    }
   }
 
   let numberArray = numberString.split(delimiter);
@@ -36,7 +45,7 @@ function add(numberString) {
       `negative numbers not allowed ${negativeNumArray.join(",")}`
     );
 
-  //step6: to ignore large numbers
+  //step6,7
   let smallNumArray = numberArray
     .map((num) => parseInt(num))
     .filter((num) => parseInt(num) < 1000);

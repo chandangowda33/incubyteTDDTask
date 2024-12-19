@@ -39,3 +39,8 @@ test("throws an exception for negative numbers", () => {
 test("numbers greater than 1000 should be ignored", () => {
   expect(stringCalculator.add("2,1021,6")).toBe(8);
 });
+
+//step7
+test("delimiters of any length should be supported", () => {
+  expect(stringCalculator.add("//[***]\n1***2***3")).toBe(6);
+});

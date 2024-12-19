@@ -16,9 +16,19 @@ function add(numberString) {
   // else
   // return numberArray.reduce((total, number) => (total += parseInt(number)), 0);
 
-  //ste3: Now delimiter is ',' and new line
+  //step3: Now delimiter is ',' and new line
   let delimiter = /[\n,]/;
+  // let numberArray = numberString.split(delimiter);
+
+  //step4:Support different delimiters
+  if (numberString.startsWith("//")) {
+    const parts = numberString.split("\n");
+    delimiter = new RegExp(parts[0][2]);
+    numberString = parts[1];
+  }
+
   let numberArray = numberString.split(delimiter);
+
   return numberArray.reduce((total, number) => (total += parseInt(number)), 0);
 }
 

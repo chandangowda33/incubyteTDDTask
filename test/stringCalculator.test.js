@@ -23,7 +23,14 @@ test("if input is string contains only n numbers with ',' and '\n' as delimiter,
   expect(stringCalculator.add("1\n2,3")).toBe(6);
 });
 
-//step 4
+//step4
 test("Support different delimiters", () => {
   expect(stringCalculator.add("//;\n1;4")).toBe(5);
+});
+
+//step5
+test("throws an exception for negative numbers", () => {
+  expect(() => stringCalculator.add("1,-2,-3")).toThrow(
+    "negative numbers not allowed -2,-3"
+  );
 });

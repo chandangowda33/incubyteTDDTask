@@ -35,7 +35,12 @@ function add(numberString) {
     throw new Error(
       `negative numbers not allowed ${negativeNumArray.join(",")}`
     );
-  return numberArray.reduce((total, number) => (total += parseInt(number)), 0);
+
+  //step6: to ignore large numbers
+  let smallNumArray = numberArray
+    .map((num) => parseInt(num))
+    .filter((num) => parseInt(num) < 1000);
+  return smallNumArray.reduce((total, number) => (total += number), 0);
 }
 
 module.exports = { add };

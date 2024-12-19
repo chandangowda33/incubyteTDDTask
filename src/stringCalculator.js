@@ -30,6 +30,7 @@ function add(numberString) {
       while ((match = delimiterPattern.exec(delimiterMatch[0])) !== null) {
         delimiters.push(match[1].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
       }
+
       delimiter = new RegExp(delimiters.join("|"));
       numberString = numberString.slice(delimiterMatch[0].length);
     } else {

@@ -49,3 +49,9 @@ test("delimiters of any length should be supported", () => {
 test("multiple delimiters should be supported", () => {
   expect(stringCalculator.add("//[*][%]\n1*2%3")).toBe(6);
 });
+
+//step9
+test("multiple delimiters of any length should be supported", () => {
+  expect(stringCalculator.add("//[@@@][$$$]\n1@@@2$$$3")).toBe(6);
+  expect(stringCalculator.add("//[@@@@][$$][#]\n1@@@@2$$3#4")).toBe(10);
+});
